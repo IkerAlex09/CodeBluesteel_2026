@@ -1,3 +1,3 @@
 # CodeBluesteel_2026
 AYUDA
-NO SABEMOS QUE ESTAMOS HACIENDO
+Ya se mueve el robot, como nadie lo sabe

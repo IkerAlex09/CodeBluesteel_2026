@@ -19,7 +19,7 @@ public class RobotContainer {
     }
 
     private void configureBindings() {
-        new JoystickButton(driverController, XboxController.Button.kA.value)
+        new JoystickButton(driverController, XboxController.Button.kRightBumper.value)
             .whileTrue(new Command() {
                 @Override
                 public void execute() {
@@ -30,6 +30,19 @@ public class RobotContainer {
                     shooterSubsystem.stop();
                 }
             });
+
+        new JoystickButton(driverController, XboxController.Button.kLeftBumper.value)
+        .whileTrue(new Command() {
+            @Override
+            public void execute() {
+                shooterSubsystem.vacum();
+            }
+            @Override
+            public void end(boolean interrupted) {
+                shooterSubsystem.stop();
+            }
+        }
+        );
     }
 
     public Command getAutonomousCommand() {

@@ -16,6 +16,11 @@ public class ShooterSubsystem extends SubsystemBase {
 
     public void shoot() {
         leftShooter.set(ShooterConstants.SHOOTER_SPEED);
+        rightShooter.set(-ShooterConstants.SHOOTER_SPEED);
+    }
+
+    public void vacum() {
+        leftShooter.set(ShooterConstants.SHOOTER_SPEED);
         rightShooter.set(ShooterConstants.SHOOTER_SPEED);
     }
 

@@ -30,7 +30,7 @@ public class SwerveModule {
         turnMotor.configure(turnConfig, (com.revrobotics.spark.SparkBase.ResetMode) null, (com.revrobotics.spark.SparkBase.PersistMode) null);
 
         this.encoderOffset = encoderOffset;
-        this.turnPIDController = new PIDController(0.01, 0, 0);
+        this.turnPIDController = new PIDController(5, 0, 5);
         this.turnPIDController.enableContinuousInput(-Math.PI, Math.PI);
     }
 

@@ -27,16 +27,16 @@ public class SwerveJoystickCmd extends Command {
         double ySpeed = -controller.getLeftX();
         double rotSpeed = -controller.getRightX();
 
-        // Deadband
         xSpeed = Math.abs(xSpeed) > OIConstants.DEADBAND ? xSpeed : 0.0;
         ySpeed = Math.abs(ySpeed) > OIConstants.DEADBAND ? ySpeed : 0.0;
         rotSpeed = Math.abs(rotSpeed) > OIConstants.DEADBAND ? rotSpeed : 0.0;
 
-        // Slew rate limiter
         xSpeed = xLimiter.calculate(xSpeed) * DriveConstants.MAX_SPEED_METERS_PER_SECOND;
         ySpeed = yLimiter.calculate(ySpeed) * DriveConstants.MAX_SPEED_METERS_PER_SECOND;
         rotSpeed = rotLimiter.calculate(rotSpeed) * DriveConstants.MAX_ANGULAR_SPEED_RADIANS_PER_SECOND;
 
+        // ✅ AQUÍ estaba el “hueco”
+        swerveSubsystem.drive(xSpeed, ySpeed, rotSpeed, true);
         
     }
 

@@ -20,22 +20,22 @@ public final class Constants {
         // ID de CAN de los motores (ajusta según tu robot)
         public static final int FRONT_LEFT_DRIVE = 1;
         public static final int FRONT_LEFT_TURN = 2;
-        public static final int FRONT_RIGHT_DRIVE = 3;
-        public static final int FRONT_RIGHT_TURN = 4;
-        public static final int BACK_LEFT_DRIVE = 5;
-        public static final int BACK_LEFT_TURN = 6;
+        public static final int FRONT_RIGHT_DRIVE = 5;
+        public static final int FRONT_RIGHT_TURN = 6;
+        public static final int BACK_LEFT_DRIVE = 3;
+        public static final int BACK_LEFT_TURN = 4;
         public static final int BACK_RIGHT_DRIVE = 7;
         public static final int BACK_RIGHT_TURN = 8;
 
         // Encoder offsets (ajusta con tus valores)
-        public static final double FRONT_LEFT_ENCODER_OFFSET = 0.0;
-        public static final double FRONT_RIGHT_ENCODER_OFFSET = 0.0;
-        public static final double BACK_LEFT_ENCODER_OFFSET = 0.0;
-        public static final double BACK_RIGHT_ENCODER_OFFSET = 0.0;
+        public static final double FRONT_LEFT_ENCODER_OFFSET = -0.083740;
+        public static final double FRONT_RIGHT_ENCODER_OFFSET = 0.416992;
+        public static final double BACK_LEFT_ENCODER_OFFSET = 0.286621;
+        public static final double BACK_RIGHT_ENCODER_OFFSET = 0.326416;
 
         // Velocidades máximas
         public static final double MAX_SPEED_METERS_PER_SECOND = 4.5;
-        public static final double MAX_ANGULAR_SPEED_RADIANS_PER_SECOND = 2 * Math.PI;
+        public static final double MAX_ANGULAR_SPEED_RADIANS_PER_SECOND = 8 * Math.PI;
     }
 
     public static final class ShooterConstants {
@@ -46,6 +46,6 @@ public final class Constants {
 
     public static final class OIConstants {
         public static final int DRIVER_CONTROLLER_PORT = 0;
-        public static final double DEADBAND = 0.05;
+        public static final double DEADBAND = 0.5;
     }
 }

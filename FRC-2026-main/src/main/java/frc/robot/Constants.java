@@ -76,7 +76,13 @@ public class Constants {
     public static final class ShooterConstants {
         public static final int SHOOTER_LEFT = 9;
         public static final int SHOOTER_RIGHT = 10;
-        public static final double SHOOTER_SPEED = 3;
+        public static final double SHOOTER_SPEED = 3.0158;
+    }
+
+    public static final class ElevatorConstants {
+        public static final int ELEVATOR_LEFT = 11;
+        public static final int ELEVATOR_RIGHT = 12;
+        public static final double ELEVATOR_SPEED = 0.2;
     }
 
     public static final class OIConstants {

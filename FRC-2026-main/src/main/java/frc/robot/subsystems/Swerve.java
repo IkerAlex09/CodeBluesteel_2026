@@ -27,6 +27,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 public class Swerve extends SubsystemBase{
+    
+    
+    private final MAXSwerveModule[] mSwerveModules = new MAXSwerveModule[4];
+
 
     //Creates MaxSwerveModule objects for each of the four modules on the base
     private final MAXSwerveModule SwerveMod0 = new MAXSwerveModule(
@@ -271,4 +275,18 @@ public class Swerve extends SubsystemBase{
     public Rotation2d getHeading() {
         return getPose().getRotation();
     }
-}
+
+
+
+
+   public void setModulesToAngle(double degrees) {
+    Rotation2d targetAngle = Rotation2d.fromDegrees(degrees);
+    
+    // Suponiendo que tienes un arreglo de tus módulos
+    for (MAXSwerveModule module : mSwerveModules) {
+        // Usamos 0 velocidad para que solo giren sin desplazarse
+        module.setDesiredState(new SwerveModuleState(0, targetAngle));
+    }
+ }  
+
+}   

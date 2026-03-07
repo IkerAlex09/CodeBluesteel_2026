@@ -27,6 +27,8 @@ import frc.robot.commands.TeleopSwerve;
 import frc.robot.subsystems.Swerve;
 import frc.robot.subsystems.ShooterSubsystem;
 
+import frc.robot.subsystems.ElevatorSubsystem;
+
 public class RobotContainer {
 
 private final XboxController driverController = new XboxController(0);
@@ -40,6 +42,8 @@ private final JoystickButton setHeading = new JoystickButton(driverController, X
 private final Trigger zeroGyro = new POVButton(driverController, 180); // Marked for removal
 
 private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
+
+private final ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem();
 
 private final Swerve s_swerve = new Swerve();
 
@@ -93,9 +97,40 @@ private void configureBindings() {
             }
         }
         );
+        new JoystickButton(driverController, XboxController.Button.kB.value)
+        .whileTrue(new RunCommand(
+        () -> s_swerve.setModulesToAngle(0), // 0 grados = hacia adelante
+        s_swerve
+       ));
+
+
+       new JoystickButton(driverController, XboxController.Button.kY.value)
+            .whileTrue(new Command() {
+                @Override
+                public void execute() {
+                    elevatorSubsystem.Updown();
+                }
+                @Override
+                public void end(boolean interrupted) {
+                    elevatorSubsystem.stop();
+                }
+            });
+            new JoystickButton(driverController, XboxController.Button.kA.value)
+            .whileTrue(new Command() {
+                @Override
+                public void execute() {
+                    elevatorSubsystem.Downup();
+                }
+                @Override
+                public void end(boolean interrupted) {
+                    elevatorSubsystem.stop();
+                }
+            });
+
+
     }
 
-private void configureButtonBindings() {
+    private void configureButtonBindings() {
     //Can be removed
     zeroGyro.onTrue(new InstantCommand(() -> s_swerve.zeroHeading(), s_swerve));
 

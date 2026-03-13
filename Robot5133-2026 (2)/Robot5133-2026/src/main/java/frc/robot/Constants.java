@@ -19,8 +19,8 @@ public final class Constants {
     }
 
     public static final class ShooterConstants {
-            public static final double kShooterSpeedHigh = 1.0;
-            public static final double kIntakeSpeed = 0.76;
+            public static final double kShooterSpeedHigh = 1.55;
+            public static final double kIntakeSpeed = 0.90;
             public static final double kShooterRampTime = 0.5;
         }
 
@@ -67,10 +67,6 @@ public final class Constants {
         public static final boolean kClawLeftReversed = false;
         public static final boolean kClawRightReversed = true; // Normalmente uno va invertido
 
-        // Velocidad de las garras (lento al principio)
-        public static final double kClawGrabSpeed = 0.8; // 30% para agarrar/subir
-        public static final double kClawReleaseSpeed = -0.8; // -30% para soltar/bajar (negativo)
-
         // Inversión de motores del disparador
         public static final boolean kShooterLeftReversed = false;
         public static final boolean kShooterRightReversed = true;
@@ -110,12 +106,12 @@ public final class Constants {
         public static final double kPhysicalMaxAngularSpeedRadiansPerSecond = 2 * Math.PI;
 
         // Velocidades para teleoperado
-        public static final double kMaxSpeedMetersPerSecond = 3.0;
-        public static final double kMaxAngularSpeedRadiansPerSecond = Math.PI;
+        public static final double kMaxSpeedMetersPerSecond = 4;      
+        public static final double kMaxAngularSpeedRadiansPerSecond = 1.5*Math.PI;
     }
 
     /*public static final class AutoConstants {
-        public static final Pose2d START_POSE = new Pose2d(0, 0, Rotation2d.fromDegrees(0));
+        public static final Pose2d START_POSE = new Pose2d(0, 0, Rotation2d.fromDegrees(0));    
     }*/
 
     public static final class OIConstants {
@@ -124,11 +120,11 @@ public final class Constants {
     }
 
     public static final class AutoConstants {
-        public static final Pose2d START_POSE = new Pose2d(0, 0, Rotation2d.fromDegrees(180));
+        public static final Pose2d START_POSE = new Pose2d(0, 0, Rotation2d.fromDegrees(0));
 
         // Constantes para el autómata
         public static final double ALIGN_TIME = 1.0; // Tiempo para alinear llantas (segundos)
-        public static final double MOVE_FORWARD_TIME = 1.5; // Tiempo para avanzar 1 metro (a 0.67 m/s)
+        public static final double MOVE_FORWARD_TIME = 1; // Tiempo para avanzar 1 metro (a 0.67 m/s)
         public static final double SHOOT_TIME = 10.0; // Tiempo disparando (segundos)
         public static final double FINAL_ALIGN_TIME = 1.0; // Tiempo para alinear al final
 

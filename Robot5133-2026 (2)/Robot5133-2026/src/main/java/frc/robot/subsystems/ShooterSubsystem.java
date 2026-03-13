@@ -51,6 +51,20 @@ public class ShooterSubsystem extends SubsystemBase {
         isRunning = true;
     }
 
+    public void shootHighR() {
+        System.out.println("🎯 DISPARANDO 100%");
+        shooterRight.set(ShooterConstants.kShooterSpeedHigh);
+        currentSpeed = ShooterConstants.kShooterSpeedHigh;
+        isRunning = true;
+    }
+    
+    public void shootHighL() {
+        System.out.println("🎯 DISPARANDO 100%");
+        shooterLeft.set(ShooterConstants.kShooterSpeedHigh);
+        currentSpeed = ShooterConstants.kShooterSpeedHigh;
+        isRunning = true;
+    }
+
     public void intake() {
         System.out.println("📥 ABSORBIENDO 76%");
         shooterLeft.set(ShooterConstants.kIntakeSpeed);

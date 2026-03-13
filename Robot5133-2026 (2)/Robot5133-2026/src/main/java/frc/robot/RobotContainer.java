@@ -13,12 +13,10 @@ import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.commands.AutonomousCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.subsystems.ClawSubsystem;
 
 public class RobotContainer {
     private final SwerveSubsystem swerve = new SwerveSubsystem();
     private final ShooterSubsystem shooter = new ShooterSubsystem();
-    private final ClawSubsystem claw = new ClawSubsystem();  // NUEVO
     private final CommandXboxController controller = new CommandXboxController(0);
 
     private double speedMultiplier = 0.8;
@@ -50,41 +48,32 @@ public class RobotContainer {
         }, swerve));
 
         controller.a().onTrue(new InstantCommand(() -> {
+            System.out.println("⬆️ LLANTAS ALINEADAS AL FRENTE (A)");
+            swerve.zeroHeading();
             swerve.calibrateWheels(0);
-            System.out.println("⬆️ LLANTAS ALINEADAS AL FRENTE (Y)");
         }, swerve));
+        controller.a().onTrue(new InstantCommand(() -> swerve.zeroHeading()));
 
         // ===== CONTROL DEL DISPARADOR =====
 
-        // LT (Left Trigger) - DISPARAR (100%)
-        controller.leftTrigger().whileTrue(new InstantCommand(() -> {
+        /*  // LT (Left Trigger) - DISPARAR (100%)
+        controller.leftBumper().whileTrue(new InstantCommand(() -> {
             shooter.shootHigh();
             System.out.println("🎯 DISPARANDO (LT)");
         }, shooter)).onFalse(new InstantCommand(() -> {
             shooter.stop();
             System.out.println("⏹️ Disparador detenido");
-        }, shooter));
+        }, shooter));*/
 
-        // LB - AGARRAR/SUBIR
-        controller.leftBumper().whileTrue(new InstantCommand(() -> {
-            claw.grab();
-            System.out.println("🔧 AGARRANDO (LB)");
-        }, claw)).onFalse(new InstantCommand(() -> {
-            claw.stop();
-            System.out.println("⏹️ Garras detenidas");
-        }, claw));
-
-        // RB - SOLTAR/BAJAR
-        controller.rightBumper().whileTrue(new InstantCommand(() -> {
-            claw.release();
-            System.out.println("🔧 SOLTANDO (RB)");
-        }, claw)).onFalse(new InstantCommand(() -> {
-            claw.stop();
-            System.out.println("⏹️ Garras detenidas");
-        }, claw));
-
+        controller.leftBumper().onTrue(
+        new SequentialCommandGroup(
+        new InstantCommand(() -> { shooter.shootHighL(); System.out.println("🎯 Disparo 1"); }, shooter),
+        new WaitCommand(2.0), // espera 2 segundos
+        new InstantCommand(() -> { shooter.shootHighR(); System.out.println("🎯 Disparo 2 después de 2s"); }, shooter)
+        )).onFalse(new InstantCommand(() -> { shooter.stop(); }, shooter));
+        
         // RT (Right Trigger) - ABSORBER (76%)
-        controller.rightTrigger().whileTrue(new InstantCommand(() -> {
+        controller.rightBumper().whileTrue(new InstantCommand(() -> {
             shooter.intake();
             System.out.println("📥 ABSORBIENDO (RT)");
         }, shooter)).onFalse(new InstantCommand(() -> {
@@ -96,6 +85,7 @@ public class RobotContainer {
         controller.b().whileTrue(new InstantCommand(() -> {
             shooter.reverseIntake();
             System.out.println("📤 EXPULSANDO (B)");
+
         }, shooter)).onFalse(new InstantCommand(() -> {
             shooter.stop();
             System.out.println("⏹️ Disparador detenido");
